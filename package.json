@@ -1,6 +1,6 @@
 {
   "name": "platform5-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "TypeScript SDK for the Platform5 Developer API — send SMS, email, and more",
   "keywords": [
     "platform5",
