@@ -54,10 +54,9 @@ export class HttpClient {
     const requestId = response.headers.get("X-Request-ID")
     const limitHeader = response.headers.get("X-RateLimit-Limit")
     const remainingHeader = response.headers.get("X-RateLimit-Remaining")
-    const rateLimit =
-      limitHeader
-        ? { limit: parseInt(limitHeader, 10), remaining: parseInt(remainingHeader ?? "0", 10) }
-        : undefined
+    const rateLimit = limitHeader
+      ? { limit: parseInt(limitHeader, 10), remaining: parseInt(remainingHeader ?? "0", 10) }
+      : undefined
 
     const body = (await response.json().catch(() => ({
       success: false,
