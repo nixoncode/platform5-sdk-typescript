@@ -1,0 +1,59 @@
+{
+  "name": "@platform5/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the Platform5 Developer API — send SMS, email, and more",
+  "keywords": [
+    "platform5",
+    "sms",
+    "email",
+    "api",
+    "sdk",
+    "typescript",
+    "communications"
+  ],
+  "author": "nixoncode",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nixoncode/platform5-sdk-typescript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nixoncode/platform5-sdk-typescript/issues"
+  },
+  "homepage": "https://github.com/nixoncode/platform5-sdk-typescript#readme",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint src/",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.5",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.64.0",
+    "vitest": "^3.0.0"
+  },
+  "packageManager": "npm@11.12.1"
+}
