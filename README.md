@@ -1,17 +1,17 @@
-# @platform5/sdk
+# platform5-sdk
 
 TypeScript SDK for the Platform5 Developer API.
 
 ## Install
 
 ```sh
-npm install @platform5/sdk
+npm install platform5-sdk
 ```
 
 ## Usage
 
 ```typescript
-import { Platform5 } from "@platform5/sdk"
+import { Platform5 } from "platform5-sdk"
 
 const app = Platform5({
   apiKey: "p5_live_abc123def456",
@@ -118,7 +118,7 @@ import {
   ValidationError,
   RateLimitError,
   Platform5Error,
-} from "@platform5/sdk"
+} from "platform5-sdk"
 
 try {
   await app.sms.send({ to: "+254712345678", message: "Hello", from: "MyBrand" })
@@ -150,7 +150,7 @@ Network errors (connection refused, DNS failure, timeout) are thrown as `Platfor
 ## Retry Pattern
 
 ```typescript
-import { Platform5, Platform5Error } from "@platform5/sdk"
+import { Platform5, Platform5Error } from "platform5-sdk"
 
 async function sendWithRetry(to: string, message: string, from: string, retries = 3) {
   for (let attempt = 1; attempt <= retries; attempt++) {
