@@ -24,7 +24,7 @@ function mockFetch(status: number, body: unknown, headers?: Record<string, strin
       },
     },
     json: () => Promise.resolve(body),
-  } as Response)
+    } as unknown as Response)
 }
 
 beforeEach(() => {

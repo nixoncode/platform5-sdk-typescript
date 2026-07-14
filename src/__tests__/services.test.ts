@@ -12,7 +12,7 @@ function mockFetch(status: number, body: unknown) {
     statusText: "",
     headers: { get: () => null },
     json: () => Promise.resolve(body),
-  } as Response)
+    } as unknown as Response)
 }
 
 beforeEach(() => {
