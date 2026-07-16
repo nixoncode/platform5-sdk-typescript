@@ -51,5 +51,8 @@
     "typescript": "^7.0.2",
     "vitest": "^4.1.10"
   },
-  "packageManager": "npm@11.12.1"
+  "packageManager": "npm@11.12.1",
+  "dependencies": {
+    "uuidv7": "^1.2.1"
+  }
 }
