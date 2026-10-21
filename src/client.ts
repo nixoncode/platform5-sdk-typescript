@@ -13,7 +13,7 @@ import { EmailService } from "./services/email.service.js"
 import { MessagesService } from "./services/messages.service.js"
 import { AccountService } from "./services/account.service.js"
 
-const DEFAULT_BASE_URL = "http://localhost:8084"
+const DEFAULT_BASE_URL = "https://api.advantaplus.ai"
 
 export class HttpClient {
   private apiKey: string
