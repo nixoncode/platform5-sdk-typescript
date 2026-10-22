@@ -50,7 +50,7 @@ export interface MessageStatusResponse {
   sender_name: string
   parts: number
   cost: number
-  status: "queued" | "forwarded" | "sent" | "delivered" | "failed" | "rejected"
+  status: "queued" | "sent" | "delivered" | "failed" | "rejected"
   created_at: string
   sent_at: string | null
   delivered_at: string | null
