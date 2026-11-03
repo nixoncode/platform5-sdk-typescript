@@ -21,4 +21,6 @@ export type {
   SendEmailResponse,
   MessageStatusResponse,
   BalanceResponse,
+  BuyAirtimeRequest,
+  BuyAirtimeResponse,
 } from "./types.js"

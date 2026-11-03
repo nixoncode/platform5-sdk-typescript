@@ -39,6 +39,13 @@ const status = await app.messages.get("msg-uuid-here")
 
 // Check balance
 const balance = await app.account.getBalance()
+
+// Buy airtime
+const airtime = await app.airtime.buy({
+  phone_number: "+254712345678",
+  amount: 100,
+})
+console.log(airtime.transaction_id, airtime.status)
 ```
 
 ## Configuration
@@ -101,6 +108,19 @@ Platform5({
 | -------------- | ----------------------------------------- |
 | `getBalance()` | Get available and current account balance |
 
+### `app.airtime`
+
+| Method            | Description      |
+| ----------------- | ---------------- |
+| `buy(req, opts?)` | Buy mobile airtime |
+
+#### BuyAirtimeRequest
+
+| Field          | Type     | Required | Description                          |
+| -------------- | -------- | -------- | ------------------------------------ |
+| `phone_number` | `string` | yes      | Recipient phone number (E.164)       |
+| `amount`       | `number` | yes      | Airtime amount in KES (10–5000)      |
+
 ### `app.health()`
 
 Check if the API is reachable. Throws on failure, returns `void` on success.
@@ -145,7 +165,7 @@ Network errors (connection refused, DNS failure, timeout) are thrown as `Platfor
 
 ## Idempotency
 
-`sms.send()` and `email.send()` automatically generate an `Idempotency-Key` header (UUID v4) for every request. This prevents duplicate charges on retry. Provide a custom key via `opts.idempotencyKey` if needed.
+`sms.send()`, `email.send()`, and `airtime.buy()` automatically generate an `Idempotency-Key` header (UUID v4) for every request. This prevents duplicate charges on retry. Provide a custom key via `opts.idempotencyKey` if needed.
 
 ## Retry Pattern
 

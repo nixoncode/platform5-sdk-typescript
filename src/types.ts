@@ -62,3 +62,19 @@ export interface BalanceResponse {
   current_balance: number
   currency: string
 }
+
+export interface BuyAirtimeRequest {
+  phone_number: string
+  amount: number
+}
+
+export interface BuyAirtimeResponse {
+  transaction_id: string
+  phone_number: string
+  amount: number
+  actual_cost: number
+  status: "pending" | "completed" | "failed"
+  reference?: string
+  provider?: string
+  created_at: string
+}

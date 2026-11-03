@@ -12,6 +12,7 @@ import { SmsService } from "./services/sms.service.js"
 import { EmailService } from "./services/email.service.js"
 import { MessagesService } from "./services/messages.service.js"
 import { AccountService } from "./services/account.service.js"
+import { AirtimeService } from "./services/airtime.service.js"
 
 const DEFAULT_BASE_URL = "https://api.advantaplus.ai"
 
@@ -111,6 +112,7 @@ export class Platform5Client {
   private _email?: EmailService
   private _messages?: MessagesService
   private _account?: AccountService
+  private _airtime?: AirtimeService
 
   constructor(config: Platform5Config) {
     this.http = new HttpClient(config)
@@ -130,6 +132,10 @@ export class Platform5Client {
 
   get account(): AccountService {
     return (this._account ??= new AccountService(this.http))
+  }
+
+  get airtime(): AirtimeService {
+    return (this._airtime ??= new AirtimeService(this.http))
   }
 
   async health(): Promise<void> {

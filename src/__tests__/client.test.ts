@@ -175,6 +175,7 @@ describe("Platform5", () => {
     expect(typeof app.email.send).toBe("function")
     expect(typeof app.messages.get).toBe("function")
     expect(typeof app.account.getBalance).toBe("function")
+    expect(typeof app.airtime.buy).toBe("function")
     expect(typeof app.health).toBe("function")
   })
 
@@ -182,5 +183,38 @@ describe("Platform5", () => {
     const app = Platform5({ apiKey: "test-key" })
     expect(app.sms).toBe(app.sms)
     expect(app.email).toBe(app.email)
+    expect(app.airtime).toBe(app.airtime)
+  })
+
+  it("buys airtime via POST /v1/airtime/buy", async () => {
+    const app = Platform5({ apiKey: "test-key", baseUrl: "http://localhost:8084" })
+    mockFetch(200, {
+      success: true,
+      message: "Airtime purchase successful",
+      data: {
+        transaction_id: "1",
+        phone_number: "+254712345678",
+        amount: 100,
+        actual_cost: 100,
+        status: "completed",
+        created_at: "2024-06-01T10:00:00Z",
+      },
+      errors: null,
+    })
+
+    const res = await app.airtime.buy({ phone_number: "+254712345678", amount: 100 }, { idempotencyKey: "idem-1" })
+
+    expect(fetch).toHaveBeenCalledWith("http://localhost:8084/v1/airtime/buy", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": "test-key",
+        "Idempotency-Key": "idem-1",
+      },
+      body: '{"phone_number":"+254712345678","amount":100}',
+      signal: undefined,
+    })
+    expect(res.transaction_id).toBe("1")
+    expect(res.status).toBe("completed")
   })
 })
